@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Attendance Management System</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-logo">AMS</div>
+            <ul class="navbar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="notifications.html">Notifications</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="../../login.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="attendance-reports.html">Attendance Reports</a></li>
+                <li><a href="skipped-classes.html">Skipped Classes</a></li>
+                <li><a href="override-analytics.html">Override Analytics</a></li>
+                <li><a href="user-management.html">User Management</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <div class="dashboard-header">
+                <h1>Notifications</h1>
+                <p>System alerts and administrative updates</p>
+            </div>
+
+            <!-- Notifications List -->
+            <div class="notification-item alert">
+                <div class="notification-title">⚠️ System Alert</div>
+                <p>Unusual attendance pattern detected: 156 students have 0% attendance in the last week. Please review.</p>
+                <div class="notification-time">1 hour ago</div>
+            </div>
+
+            <div class="notification-item alert">
+                <div class="notification-title">⚠️ Database Alert</div>
+                <p>Database backup scheduled for tonight at 2:00 AM. System will be in read-only mode during backup.</p>
+                <div class="notification-time">3 hours ago</div>
+            </div>
+
+            <div class="notification-item success">
+                <div class="notification-title">✓ User Account Created</div>
+                <p>New faculty member account created: Dr. Vikram Sharma (FAC2025001)</p>
+                <div class="notification-time">5 hours ago</div>
+            </div>
+
+            <div class="notification-item">
+                <div class="notification-title">📢 System Maintenance</div>
+                <p>System maintenance scheduled for January 20, 2025 from 10:00 PM to 12:00 AM. The system will be offline during this period.</p>
+                <div class="notification-time">1 day ago</div>
+            </div>
+
+            <div class="notification-item success">
+                <div class="notification-title">✓ System Update</div>
+                <p>New QR code generation module has been successfully deployed to production.</p>
+                <div class="notification-time">2 days ago</div>
+            </div>
+
+            <div class="notification-item alert">
+                <div class="notification-title">⚠️ Bulk Data Import</div>
+                <p>Bulk import of 500 student records completed with 3 validation errors. Please check the error log.</p>
+                <div class="notification-time">3 days ago</div>
+            </div>
+
+            <div class="notification-item success">
+                <div class="notification-title">✓ Report Generated</div>
+                <p>Monthly attendance report has been generated and is ready for download.</p>
+                <div class="notification-time">4 days ago</div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

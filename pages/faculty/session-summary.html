@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Summary - Attendance Management System</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-logo">AMS</div>
+            <ul class="navbar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="notifications.html">Notifications</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="../../login.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="start-session.html">Start Attendance Session</a></li>
+                <li><a href="live-monitor.html">Live Monitor</a></li>
+                <li><a href="manual-attendance.html">Manual Attendance</a></li>
+                <li><a href="session-summary.html" class="active">Session Summary</a></li>
+                <li><a href="notifications.html">Notifications</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <div class="dashboard-header">
+                <h1>Session Summary</h1>
+                <p>Attendance statistics for the completed session</p>
+            </div>
+
+            <!-- Session Details -->
+            <div class="form-container" style="max-width: 100%;">
+                <h2>Session Information</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="text" value="Mathematics - Section A" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" value="2025-01-15" disabled>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Start Time</label>
+                        <input type="time" value="09:00" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>End Time</label>
+                        <input type="time" value="10:00" disabled>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <h3>30</h3>
+                    <p>Total Students</p>
+                </div>
+                <div class="stat-box">
+                    <h3>24</h3>
+                    <p>Present</p>
+                </div>
+                <div class="stat-box">
+                    <h3>3</h3>
+                    <p>Absent</p>
+                </div>
+                <div class="stat-box">
+                    <h3>3</h3>
+                    <p>Late</p>
+                </div>
+            </div>
+
+            <!-- Attendance Summary -->
+            <div class="live-count">
+                <div class="count-box">
+                    <h3>80%</h3>
+                    <p>Attendance Rate</p>
+                </div>
+                <div class="count-box">
+                    <h3>24</h3>
+                    <p>QR Scans</p>
+                </div>
+                <div class="count-box">
+                    <h3>0</h3>
+                    <p>Manual Entries</p>
+                </div>
+            </div>
+
+            <!-- Detailed Report -->
+            <div class="table-container" style="margin-top: 30px;">
+                <h2 style="margin-bottom: 20px;">Detailed Report</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Roll No.</th>
+                            <th>Student Name</th>
+                            <th>Scan Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>Aditya Kumar</td>
+                            <td>09:05 AM</td>
+                            <td><span class="status-badge status-present">Present</span></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>Bhavna Singh</td>
+                            <td>09:08 AM</td>
+                            <td><span class="status-badge status-present">Present</span></td>
+                        </tr>
+                        <tr>
+                            <td>025</td>
+                            <td>Priya Verma</td>
+                            <td>-</td>
+                            <td><span class="status-badge status-absent">Absent</span></td>
+                        </tr>
+                        <tr>
+                            <td>028</td>
+                            <td>Rajesh Nair</td>
+                            <td>09:25 AM</td>
+                            <td><span class="status-badge status-pending">Late</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Action Buttons -->
+            <div style="display: flex; gap: 10px; margin-top: 30px;">
+                <button class="btn btn-primary" onclick="downloadReport()">📥 Download Report</button>
+                <button class="btn btn-secondary" onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function downloadReport() {
+            alert('Downloading attendance report...');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live QR Display - Attendance Management System</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-logo">AMS</div>
+            <ul class="navbar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="notifications.html">Notifications</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="../../login.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="start-session.html" class="active">Start Attendance Session</a></li>
+                <li><a href="live-monitor.html">Live Monitor</a></li>
+                <li><a href="manual-attendance.html">Manual Attendance</a></li>
+                <li><a href="session-summary.html">Session Summary</a></li>
+                <li><a href="notifications.html">Notifications</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <div class="dashboard-header">
+                <h1>Live QR Code Display</h1>
+                <p>Share this QR code with students for attendance marking</p>
+            </div>
+
+            <!-- QR Code Display -->
+            <div class="qr-scanner-container">
+                <h2>Mathematics - Section A</h2>
+                <div class="qr-display" id="qrDisplay" style="width: 400px; height: 400px;">
+                    🔲 LIVE QR CODE<br>
+                    <small style="font-size: 14px; margin-top: 10px;">Auto-refreshing every 30 seconds</small>
+                </div>
+                
+                <!-- Live Scan Count -->
+                <div class="live-count" style="margin-top: 30px;">
+                    <div class="count-box">
+                        <h3 id="scanCount">24</h3>
+                        <p>Scans Received</p>
+                    </div>
+                    <div class="count-box">
+                        <h3>30</h3>
+                        <p>Expected Students</p>
+                    </div>
+                    <div class="count-box">
+                        <h3 id="percentage">80%</h3>
+                        <p>Attendance Rate</p>
+                    </div>
+                </div>
+
+                <!-- Session Info -->
+                <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 30px;">
+                    <h3 style="margin-bottom: 15px; color: #333;">Session Information</h3>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr style="border-bottom: 1px solid #ddd;">
+                            <td style="padding: 10px; font-weight: 600;">Session Started:</td>
+                            <td style="padding: 10px;">09:00 AM</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #ddd;">
+                            <td style="padding: 10px; font-weight: 600;">Elapsed Time:</td>
+                            <td style="padding: 10px;" id="elapsedTime">00:05:30</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; font-weight: 600;">Status:</td>
+                            <td style="padding: 10px;"><span class="status-badge status-present">Active</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display: flex; gap: 10px; margin-top: 30px; justify-content: center;">
+                    <button class="btn btn-secondary btn-small" onclick="refreshQR()">🔄 Refresh QR</button>
+                    <button class="btn btn-danger" onclick="endSession()">End Session</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Auto-update scan count and time
+        function updateLiveData() {
+            const currentScans = parseInt(document.getElementById('scanCount').textContent);
+            const newScans = Math.min(currentScans + Math.floor(Math.random() * 3), 30);
+            document.getElementById('scanCount').textContent = newScans;
+            
+            const percentage = Math.round((newScans / 30) * 100);
+            document.getElementById('percentage').textContent = percentage + '%';
+
+            // Update elapsed time
+            const timeEl = document.getElementById('elapsedTime');
+            const timeParts = timeEl.textContent.split(':');
+            let seconds = parseInt(timeParts[2]) + 1;
+            let minutes = parseInt(timeParts[1]);
+            let hours = parseInt(timeParts[0]);
+
+            if (seconds >= 60) {
+                seconds = 0;
+                minutes++;
+            }
+            if (minutes >= 60) {
+                minutes = 0;
+                hours++;
+            }
+
+            timeEl.textContent = 
+                String(hours).padStart(2, '0') + ':' + 
+                String(minutes).padStart(2, '0') + ':' + 
+                String(seconds).padStart(2, '0');
+        }
+
+        // Refresh every 5 seconds
+        setInterval(updateLiveData, 5000);
+
+        function refreshQR() {
+            alert('QR Code refreshed!');
+            document.getElementById('qrDisplay').textContent = '🔲 LIVE QR CODE (Refreshed)\nAuto-refreshing every 30 seconds';
+        }
+
+        function endSession() {
+            if (confirm('Are you sure you want to end this attendance session?')) {
+                window.location.href = 'session-summary.html';
+            }
+        }
+    </script>
+</body>
+</html>

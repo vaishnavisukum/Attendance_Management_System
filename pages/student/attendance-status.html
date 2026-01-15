@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Status - Attendance Management System</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-logo">AMS</div>
+            <ul class="navbar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="notifications.html">Notifications</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="../../login.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="campus-attendance.html">Campus Attendance</a></li>
+                <li><a href="subject-attendance.html">Subject Attendance</a></li>
+                <li><a href="attendance-status.html" class="active">Attendance Status</a></li>
+                <li><a href="notifications.html">Notifications</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <div class="dashboard-header">
+                <h1>Attendance Status</h1>
+                <p>View your attendance records and statistics</p>
+            </div>
+
+            <!-- Overall Stats -->
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <h3>92%</h3>
+                    <p>Overall Attendance</p>
+                </div>
+                <div class="stat-box">
+                    <h3>24</h3>
+                    <p>Classes Present</p>
+                </div>
+                <div class="stat-box">
+                    <h3>2</h3>
+                    <p>Classes Absent</p>
+                </div>
+                <div class="stat-box">
+                    <h3>1</h3>
+                    <p>Classes Left</p>
+                </div>
+            </div>
+
+            <!-- Campus Attendance Status -->
+            <h2 style="margin: 30px 0 20px 0; color: #333;">Campus Attendance Status</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Check-in Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>January 15, 2025</td>
+                            <td>09:15 AM</td>
+                            <td><span class="status-badge status-present">Present</span></td>
+                        </tr>
+                        <tr>
+                            <td>January 14, 2025</td>
+                            <td>09:10 AM</td>
+                            <td><span class="status-badge status-present">Present</span></td>
+                        </tr>
+                        <tr>
+                            <td>January 13, 2025</td>
+                            <td>-</td>
+                            <td><span class="status-badge status-absent">Absent</span></td>
+                        </tr>
+                        <tr>
+                            <td>January 12, 2025</td>
+                            <td>09:05 AM</td>
+                            <td><span class="status-badge status-present">Present</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Subject-wise Status -->
+            <h2 style="margin: 30px 0 20px 0; color: #333;">Subject-wise Attendance</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Total Classes</th>
+                            <th>Present</th>
+                            <th>Absent</th>
+                            <th>Attendance %</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mathematics</td>
+                            <td>20</td>
+                            <td>18</td>
+                            <td>2</td>
+                            <td>90%</td>
+                            <td><span class="status-badge status-present">Good</span></td>
+                        </tr>
+                        <tr>
+                            <td>English Literature</td>
+                            <td>20</td>
+                            <td>19</td>
+                            <td>1</td>
+                            <td>95%</td>
+                            <td><span class="status-badge status-present">Excellent</span></td>
+                        </tr>
+                        <tr>
+                            <td>Physics</td>
+                            <td>15</td>
+                            <td>13</td>
+                            <td>2</td>
+                            <td>87%</td>
+                            <td><span class="status-badge status-pending">Fair</span></td>
+                        </tr>
+                        <tr>
+                            <td>Chemistry</td>
+                            <td>15</td>
+                            <td>15</td>
+                            <td>0</td>
+                            <td>100%</td>
+                            <td><span class="status-badge status-present">Perfect</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

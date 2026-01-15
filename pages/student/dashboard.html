@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Attendance Management System</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-logo">AMS</div>
+            <ul class="navbar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="notifications.html">Notifications</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="../../login.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="campus-attendance.html">Campus Attendance</a></li>
+                <li><a href="subject-attendance.html">Subject Attendance</a></li>
+                <li><a href="attendance-status.html">Attendance Status</a></li>
+                <li><a href="notifications.html">Notifications</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <div class="dashboard-header">
+                <h1>Welcome, Student</h1>
+                <p>Manage your attendance efficiently</p>
+            </div>
+
+            <!-- Dashboard Cards -->
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">📍</div>
+                    <div class="card-title">Campus Attendance</div>
+                    <div class="card-text">Mark your campus attendance using QR code</div>
+                    <a href="campus-attendance.html" class="card-link">Go →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📚</div>
+                    <div class="card-title">Subject Attendance</div>
+                    <div class="card-text">Mark attendance for individual subjects</div>
+                    <a href="subject-attendance.html" class="card-link">Go →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <div class="card-title">Attendance Status</div>
+                    <div class="card-text">View your attendance records and statistics</div>
+                    <a href="attendance-status.html" class="card-link">Go →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔔</div>
+                    <div class="card-title">Notifications</div>
+                    <div class="card-text">Receive attendance alerts and updates</div>
+                    <a href="notifications.html" class="card-link">Go →</a>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <h3>92%</h3>
+                    <p>Attendance Rate</p>
+                </div>
+                <div class="stat-box">
+                    <h3>24</h3>
+                    <p>Classes Attended</p>
+                </div>
+                <div class="stat-box">
+                    <h3>2</h3>
+                    <p>Absences</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
