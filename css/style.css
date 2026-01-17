@@ -10,6 +10,7 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     color: #333;
+     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 /* Utility Classes */
@@ -77,11 +78,11 @@ body {
 
 /* Landing Page */
 .landing {
-    min-height: 100vh;
+    height: 50vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
 }
 
 .landing-content {
@@ -119,7 +120,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+   
 }
 
 .login-box {
