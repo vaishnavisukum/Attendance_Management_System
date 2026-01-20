@@ -5,9 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subject Attendance - Attendance Management System</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="icon" type="image/jpeg" href="assets/Logo.jpeg">
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <style>
+        #reader {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #ddd;
+        }
+        .status-message {
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .status-success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .status-error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-content">
             <div class="navbar-logo">AMS</div>
@@ -20,9 +39,7 @@
         </div>
     </nav>
 
-    <!-- Main Layout -->
     <div class="dashboard-layout">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <ul class="sidebar-menu">
                 <li><a href="dashboard.html">Dashboard</a></li>
@@ -34,84 +51,78 @@
             </ul>
         </aside>
 
-        <!-- Main Content -->
         <main class="dashboard-content">
             <div class="dashboard-header">
                 <h1>Subject Attendance</h1>
                 <p>Scan QR code to mark subject attendance</p>
             </div>
 
-            <!-- Subject Selection -->
             <div class="form-container" style="max-width: 100%;">
                 <h2>Select Subject</h2>
                 <div class="form-group">
                     <label for="subjectSelect">Choose Subject</label>
-                    <select id="subjectSelect" onchange="updateQRDisplay()">
+                    <select id="subjectSelect">
                         <option value="">-- Select Subject --</option>
-                        <option value="MATH">Mathematics</option>
-                        <option value="ENG">English Literature</option>
-                        <option value="PHYS">Physics</option>
-                        <option value="CHEM">Chemistry</option>
-                        <option value="BIO">Biology</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="English Literature">English Literature</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Biology">Biology</option>
                     </select>
                 </div>
             </div>
 
-            <!-- QR Scanner -->
             <div class="qr-scanner-container">
                 <h2>QR Code Scanner</h2>
-                <div class="qr-display" id="qrDisplay">
-                    📱 Select subject and scan QR Code
-                </div>
                 
-                <input type="text" id="qrInput" placeholder="Or paste QR data here" style="width: 100%; padding: 12px; margin: 20px 0; border: 1px solid #ddd; border-radius: 5px;">
+                <div id="reader"></div>
                 
-                <button class="btn btn-primary" onclick="scanSubjectQR()">Mark Attendance</button>
+                <div id="statusMessage"></div>
                 
-                <div id="statusMessage" style="margin-top: 20px;"></div>
+                <button class="btn btn-primary" style="margin-top: 20px;" onclick="startScanner()">Restart Scanner</button>
             </div>
         </main>
     </div>
 
     <script>
-        function updateQRDisplay() {
-            const subject = document.getElementById('subjectSelect').value;
-            const qrDisplay = document.getElementById('qrDisplay');
-            
-            if (subject) {
-                qrDisplay.textContent = '📱 Subject: ' + subject + ' - Scan QR Code';
-            } else {
-                qrDisplay.textContent = '📱 Select subject and scan QR Code';
-            }
-        }
+        const html5QrCode = new Html5Qrcode("reader");
+        const statusDiv = document.getElementById('statusMessage');
+        const subjectSelect = document.getElementById('subjectSelect');
 
-        function scanSubjectQR() {
-            const qrData = document.getElementById('qrInput').value;
-            const subject = document.getElementById('subjectSelect').value;
-            const statusDiv = document.getElementById('statusMessage');
-            
+        const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+            const subject = subjectSelect.value;
+
+            // 1. Validation: Check if subject is selected
             if (!subject) {
-                statusDiv.innerHTML = '<div class="status-message status-error">Please select a subject</div>';
+                statusDiv.innerHTML = '<div class="status-message status-error">⚠️ Please select a subject first!</div>';
                 return;
             }
-            
-            if (qrData.trim() === '') {
-                statusDiv.innerHTML = '<div class="status-message status-error">Please enter or scan a QR code</div>';
-                return;
-            }
-            
-            // Simulate QR verification
-            if (qrData.includes('SUBJECT')) {
-                statusDiv.innerHTML = '<div class="status-message status-success">✓ Attendance marked for ' + subject + '!</div>';
-                document.getElementById('qrInput').value = '';
+
+            // 2. Validation: Check if the QR is a "Subject" type QR
+            if (decodedText.includes('SUBJECT')) {
+                statusDiv.innerHTML = `<div class="status-message status-success">✓ Attendance marked for ${subject}!</div>`;
+                html5QrCode.stop(); // Stop camera after success
             } else {
-                statusDiv.innerHTML = '<div class="status-message status-error">✗ Invalid QR Code. Please try again.</div>';
+                statusDiv.innerHTML = '<div class="status-message status-error">✗ Invalid Subject QR Code.</div>';
             }
+        };
+
+        const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+
+        // Start scanning automatically on page load
+        function startScanner() {
+            statusDiv.innerHTML = "";
+            html5QrCode.start(
+                { facingMode: "environment" }, 
+                config, 
+                qrCodeSuccessCallback
+            ).catch(err => {
+                statusDiv.innerHTML = `<div class="status-message status-error">Camera Error: ${err}</div>`;
+            });
         }
 
-        document.getElementById('qrInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') scanSubjectQR();
-        });
+        // Initialize scanner
+        startScanner();
     </script>
 </body>
 </html>

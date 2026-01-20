@@ -3,82 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus Attendance - Attendance Management System</title>
+    <title>Campus Attendance - AMS</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <style>
+        .qr-scanner-container { text-align: center; max-width: 600px; margin: auto; }
+        #reader { width: 100%; border-radius: 10px; overflow: hidden; border: 2px solid #3498db; }
+        .status-success { color: green; font-weight: bold; margin-top: 10px; }
+        .status-error { color: red; font-weight: bold; margin-top: 10px; }
+    </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-content">
             <div class="navbar-logo">AMS</div>
             <ul class="navbar-menu">
                 <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="notifications.html">Notifications</a></li>
-                <li><a href="profile.html">Profile</a></li>
                 <li><a href="../../login.html">Logout</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Main Layout -->
     <div class="dashboard-layout">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <ul class="sidebar-menu">
                 <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="campus-attendance.html" class="active">Campus Attendance</a></li>
-                <li><a href="subject-attendance.html">Subject Attendance</a></li>
-                <li><a href="attendance-status.html">Attendance Status</a></li>
-                <li><a href="notifications.html">Notifications</a></li>
-                <li><a href="profile.html">Profile</a></li>
-            </ul>
+                </ul>
         </aside>
 
-        <!-- Main Content -->
         <main class="dashboard-content">
             <div class="dashboard-header">
                 <h1>Campus Attendance</h1>
-                <p>Scan the QR code to mark your campus arrival</p>
+                <p>Align the QR code within the frame to mark attendance</p>
             </div>
 
             <div class="qr-scanner-container">
-                <h2>QR Code Scanner</h2>
-                <div class="qr-display" id="qrDisplay">
-                    📱 Scan QR Code Here
-                </div>
+                <div id="reader"></div>
                 
-                <input type="text" id="qrInput" placeholder="Or paste QR data here" style="width: 100%; padding: 12px; margin: 20px 0; border: 1px solid #ddd; border-radius: 5px;">
+                <div id="statusMessage"></div>
                 
-                <button class="btn btn-primary" onclick="scanQR()">Verify Attendance</button>
-                
-                <div id="statusMessage" style="margin-top: 20px;"></div>
+                <button class="btn btn-primary" style="margin-top: 20px;" onclick="restartScanner()">Restart Scanner</button>
             </div>
         </main>
     </div>
 
     <script>
-        function scanQR() {
-            const qrData = document.getElementById('qrInput').value;
-            const statusDiv = document.getElementById('statusMessage');
-            
-            if (qrData.trim() === '') {
-                statusDiv.innerHTML = '<div class="status-message status-error">Please enter or scan a QR code</div>';
-                return;
-            }
-            
-            // Simulate QR verification
-            if (qrData.includes('CAMPUS')) {
-                statusDiv.innerHTML = '<div class="status-message status-success">✓ Campus Attendance Marked Successfully!</div>';
-                document.getElementById('qrInput').value = '';
-            } else {
-                statusDiv.innerHTML = '<div class="status-message status-error">✗ Invalid QR Code. Please try again.</div>';
-            }
-        }
+        const html5QrCode = new Html5Qrcode("reader");
+        const statusDiv = document.getElementById('statusMessage');
 
-        // Allow Enter key to trigger scan
-        document.getElementById('qrInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') scanQR();
-        });
+        const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+            // Logic for valid attendance code
+            if (decodedText.includes('CAMPUS')) {
+                statusDiv.innerHTML = '<div class="status-success">✓ Attendance Marked for: ' + decodedText + '</div>';
+                html5QrCode.stop(); // Stop scanning after success
+            } else {
+                statusDiv.innerHTML = '<div class="status-error">✗ Invalid Campus QR Code</div>';
+            }
+        };
+
+        const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+
+        // Start the scanner
+        html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
+
+        function restartScanner() {
+            statusDiv.innerHTML = "";
+            html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
+        }
     </script>
 </body>
 </html>
