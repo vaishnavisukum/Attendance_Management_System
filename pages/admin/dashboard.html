@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Attendance Management System</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-logo">AMS</div>
+            <ul class="navbar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="notifications.html">Notifications</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="../../login.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="attendance-reports.html">Attendance Reports</a></li>
+                <li><a href="skipped-classes.html">Skipped Classes</a></li>
+                <li><a href="override-analytics.html">Override Analytics</a></li>
+                <li><a href="user-management.html">User Management</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <div class="dashboard-header">
+                <h1>Welcome, Administrator</h1>
+                <p>Manage system-wide attendance and user administration</p>
+            </div>
+
+            <!-- Dashboard Cards -->
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <div class="card-title">Attendance Reports</div>
+                    <div class="card-text">View comprehensive attendance analytics</div>
+                    <a href="attendance-reports.html" class="card-link">View →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">⚠️</div>
+                    <div class="card-title">Skipped Classes</div>
+                    <div class="card-text">Students who came but skipped classes</div>
+                    <a href="skipped-classes.html" class="card-link">View →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔧</div>
+                    <div class="card-title">Override Analytics</div>
+                    <div class="card-text">Faculty manual override logs and analysis</div>
+                    <a href="override-analytics.html" class="card-link">View →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">👥</div>
+                    <div class="card-title">User Management</div>
+                    <div class="card-text">Manage students, faculty, and departments</div>
+                    <a href="user-management.html" class="card-link">Manage →</a>
+                </div>
+            </div>
+
+            <!-- System Stats -->
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <h3>2,456</h3>
+                    <p>Total Students</p>
+                </div>
+                <div class="stat-box">
+                    <h3>156</h3>
+                    <p>Faculty Members</p>
+                </div>
+                <div class="stat-box">
+                    <h3>12</h3>
+                    <p>Departments</p>
+                </div>
+                <div class="stat-box">
+                    <h3>94%</h3>
+                    <p>Average Attendance</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
